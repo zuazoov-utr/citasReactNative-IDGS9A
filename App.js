@@ -1,4 +1,4 @@
-
+import { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,8 +9,12 @@ import {
   SafeAreaProvider,
   SafeAreaView,
 } from 'react-native-safe-area-context';
+// Components
+import Formulario from './components/Formulario';
 
 export default function App() {
+  // states
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container}>
@@ -20,10 +24,14 @@ export default function App() {
 
         <Pressable
           style={styles.btnNuevaCita}
-          onPress={() => console.log('Hola Mundo desde Pressable')}
+          onPress={() => setModalVisible(true)}
         >
           <Text style={styles.btnTextNuevaCita}>Nueva Cita</Text>
         </Pressable>
+        <Formulario
+          showModal={modalVisible}
+          setShowNodal={setModalVisible}
+        />
       </SafeAreaView>
     </SafeAreaProvider>
   );
